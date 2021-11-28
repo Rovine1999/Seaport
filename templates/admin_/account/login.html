@@ -1,0 +1,43 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-holder">
+          <h1>Admin Login</h1>
+          <hr class="dropdown-divider">
+
+          <div>
+              {% include './../components/errors.html' %}
+          </div>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                <strong>Username</strong>
+              </label>
+              <input type="text" class="form-control shadow-none" id="email" name="username" aria-describedby="emailHelp"
+                placeholder="Enter email">
+              <!-- <div id="emailHelp" class="form-text">Please enter your email here</div> -->
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">
+                <strong>Password</strong>
+              </label>
+              <input type="password" class="form-control shadow-none" name="password" id="password"
+                placeholder="PASSWORD">
+            </div>
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Login</button>
+            <div class="my-2">
+              Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

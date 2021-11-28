@@ -1,0 +1,17 @@
+.navbar-holder {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1099;
+}
+
+.dropdown-holder {
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  border: 0;
+}
+
+.active-link {
+  border-bottom: 4px solid var(--bs-primary);
+}

@@ -1,0 +1,37 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-holder">
+          <h1>Register New Ship</h1>
+          <hr class="dropdown-divider">
+            <div>
+              {% include './../components/errors.html' %}
+          </div>
+          <form action="" method="POST">
+            {% csrf_token %}
+
+            {% for field in shipform %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="my-2"><strong>{{field.label}}</strong></label>
+                    <div class="text-danger">{{field.errors}}</div>
+                    {{field}}
+                    {% if field.help_text %}
+                        <p class="text-warning">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Ship</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

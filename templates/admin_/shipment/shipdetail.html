@@ -1,0 +1,98 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container-fluid">
+    <div class="row py-3">
+      <div class="col-md-2 d-none d-md-block position-relative">
+        <div class="ship-holder sticky-top common-card px-1 py-3">
+          <a href="{% url 'registership' %}" class="btn btn-primary rounded-pill w-100">Register ship</a>
+          {% for ship_ in ships %}
+            <a href="{% url 'shipmentdetails' ship_id=ship_.id ship_name=ship_.name %}" class="my-2 d-block t-none">
+              <div class="p-2 common-card-1 text-capitalize {% if ship_.name == ship.name %} active-ship {% else %} ship {% endif %}">
+                <strong>{{ship_.name}}</strong>
+              </div>
+            </a>
+          {% endfor %}
+
+          {% if ships|length == 0 %}
+            <div class="p-3 alert-info">No ship found</div>
+          {% endif %}
+
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="common-card overflowx-hidden">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 my-2">
+              <h1 class="text-capitalize">{{ship.name}}</h1>
+            </div>
+            <div class="col-md-6 col-sm-12 my-2">
+              <a href="{% url 'registercontainer' ship_id=ship.id ship_name=ship.name %}" class="rounded-pill btn btn-primary px-4 shadow-none">
+                Register new container
+              </a>
+            </div>
+          </div>
+          <hr class="dropdown-divider">
+
+          <div class="w-100 table-responsive">
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 30px;">No.</th>
+                  <th style="width: 100px;">Date</th>
+                  <th style="width: 200px;">Company Name</th>
+                  <th style="width: 70px;">Container ID</th>
+                  <th style="width: 70px;">Size</th>
+                  <th style="width: 70px;">Price</th>
+                  <th style="width: 70px;" class="capitalize">Side</th>
+                  <th style="width: 70px;">Status</th>
+                  <th style="width: 200px;">Comment</th>
+                  <th style="width: 120px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for container in containers %}
+                <tr>
+                  <td>{{container.id}}</td>
+                  <td>{{container.date}}</td>
+                  <td>{{container.company_name}}</td>
+                  <td>{{container.container_id}}</td>
+                  <td>{{container.size}}</td>
+                  <td>{{container.price}}</td>
+                  <td>{{container.side}}</td>
+                  <td>
+                    <button class="btn btn-sm px-2 btn-{{container.status.status_color}} text-capitalize shadow-none">{{container.status.status}}</button>
+                  </td>
+                  <td>{{container.comment}}</td>
+                  <td>
+                    <a href="{% url 'editcontainer' container_id=container.id %}" class="btn text-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Edit container">
+                      <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="btn text-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Delete container">
+                      <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                </tr>
+
+              {% endfor %}
+
+              </tbody>
+            </table>
+
+            {% if containers|length == 0 %}
+            <div class="p-3 alert-info">No containers found</div>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

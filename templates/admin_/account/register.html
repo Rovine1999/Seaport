@@ -1,0 +1,87 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-holder">
+          <h1>Admin Sign Up</h1>
+          <hr class="dropdown-divider">
+
+          <div>
+              {% include './../components/errors.html' %}
+          </div>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                <strong>First Name</strong>
+              </label>
+              <input type="text" class="form-control shadow-none" id="fname" name="fname" aria-describedby="fname"
+                placeholder="Enter First Name">
+            </div>
+
+            <div class="mb-3">
+              <label for="lname" class="form-label">
+                <strong>Last Name</strong>
+              </label>
+              <input type="text" class="form-control shadow-none" id="lname" name="lname" aria-describedby="lnamehelp"
+                placeholder="Enter Last Name">
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                <strong>Email address</strong>
+              </label>
+              <input type="email" class="form-control shadow-none" id="email" name="email" aria-describedby="emailHelp"
+                placeholder="Enter email">
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                <strong>Username</strong>
+              </label>
+              <input type="username" class="form-control shadow-none" id="username" name="username" aria-describedby="usernameHelp"
+                placeholder="Enter username">
+            </div>
+
+            <div class="mb-3">
+              <label for="pnumber" class="form-label">
+                <strong>Phone number</strong>
+              </label>
+              <input type="text" class="form-control shadow-none" id="pnumber" name="pnumber" aria-describedby="pnumber"
+                placeholder="Enter Phone Number">
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">
+                <strong>Password</strong>
+              </label>
+              <input type="password" class="form-control shadow-none" name="password" id="password"
+                placeholder="password">
+            </div>
+
+            <div class="mb-3">
+              <label for="password1" class="form-label">
+                <strong>Confirm Password</strong>
+              </label>
+              <input type="password" class="form-control shadow-none" name="password1" id="password1"
+                placeholder="password">
+            </div>
+
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Sign Up</button>
+
+            <div class="my-2">
+              Have an account? <a href="{% url 'login' %}">Login</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

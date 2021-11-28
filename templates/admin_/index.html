@@ -1,0 +1,57 @@
+{% extends './components/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="common-card overflowx-hidden">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 my-2">
+          <h1>Ships History</h1>
+        </div>
+        <div class="col-md-6 col-sm-12 my-2">
+          <a href="{% url 'registership' %}" class="rounded-pill btn btn-primary px-4 shadow-none">
+            Register new ship
+          </a>
+        </div>
+      </div>
+      <hr class="dropdown-divider">
+
+      <div class="w-100 table-responsive">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="width: 30px;">No.</th>
+              <th style="width: 150px;">Name</th>
+              <th style="width: 100px;">Date</th>
+              <th style="width: 70px;">No. of Containers</th>
+              <th style="width: 200px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for ship in ships %}
+            <tr>
+              <td>{{ship.id}}</td>
+              <td>{{ship.name}}</td>
+              <td>{{ship.date}}</td>
+              <td>{{ship.no_of_containers}}</td>
+              <td>
+                <a href="{% url 'shipmentdetails' ship_id=ship.id ship_name=ship.name %}" class="my-2 rounded-pill px-3 py-1 btn btn-primary">View history</a>
+                <a href="#" class="my-2 rounded-pill px-3 py-1 btn btn-warning">Edit</a>
+                <a href="#" class="my-2 rounded-pill px-3 py-1 btn btn-danger">Delete</a>
+              </td>
+            </tr>
+
+          {% endfor %}
+        </table>
+        <div>
+          {% if ships|length == 0 %}
+            <div class="p-3 alert-info">No ship found</div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content %}

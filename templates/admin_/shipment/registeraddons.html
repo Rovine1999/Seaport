@@ -1,0 +1,87 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 my-3">
+          <div>
+              {% include './../components/errors.html' %}
+          </div>
+        <div class="form-holder">
+          <h1>Register Size</h1>
+          <hr class="dropdown-divider">
+          <form action="{% url 'saveSize' %}" method="POST">
+            {% csrf_token %}
+
+            {% for field in sizeform %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="my-2"><strong>{{field.label}}</strong></label>
+                    <div class="text-danger">{{field.errors}}</div>
+                    {{field}}
+                    {% if field.help_text %}
+                        <p class="text-warning">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Size</button>
+
+          </form>
+        </div>
+
+        <div class="form-holder my-3">
+          <h1>Register Side</h1>
+          <hr class="dropdown-divider">
+          <form action="{% url 'saveSide' %}" method="POST">
+            {% csrf_token %}
+
+            {% for field in sideform %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="my-2"><strong>{{field.label}}</strong></label>
+                    <div class="text-danger">{{field.errors}}</div>
+                    {{field}}
+                    {% if field.help_text %}
+                        <p class="text-warning">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Side</button>
+
+          </form>
+        </div>
+
+
+       <div class="form-holder my-3">
+          <h1>Register Status</h1>
+          <hr class="dropdown-divider">
+          <form action="{% url 'saveStatus' %}" method="POST">
+            {% csrf_token %}
+
+            {% for field in statusform %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="my-2"><strong>{{field.label}}</strong></label>
+                    <div class="text-danger">{{field.errors}}</div>
+                    {{field}}
+                    {% if field.help_text %}
+                        <p class="text-warning">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Status</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
