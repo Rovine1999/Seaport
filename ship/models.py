@@ -46,15 +46,20 @@ class Ship(models.Model):
 
 
 class Container(models.Model):
+    PRICES = (
+        ('$ 112.5', '$ 112.5'),
+        ('$ 62', '$ 62'),
+        
+    )
     # created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     ship = models.ForeignKey(Ship, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
     company_name = models.CharField(max_length=200, blank=True, null=True)
     container_id = models.CharField(max_length=200, blank=True, null=True)
     size = models.ForeignKey(ContainerSize, on_delete=models.SET_NULL, null=True, blank=True)
-    price = models.CharField(max_length=200, blank=True, null=True)
+    price = models.CharField(max_length=200, choices=PRICES, blank=True, null=True)
     side = models.ForeignKey(ContainerSide, on_delete=models.SET_NULL, null=True, blank=True)
     status = models.ForeignKey(ContainerStatus, on_delete=models.SET_NULL, null=True, blank=True)
-    comment = models.CharField(max_length=200, blank=True, null=True)
+    comment = models.CharField(max_length=200, default='',)
     date_created = models.DateTimeField(auto_now_add=True)
 

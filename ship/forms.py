@@ -41,10 +41,10 @@ class CreateContainerForm(forms.ModelForm):
             attrs={'class': 'form-control shadow-none', 'type': 'text', 'placeholder': 'Company Name'}),
         label='Company Name')
 
-    price = forms.CharField(
-        widget=forms.TextInput(
-            attrs={'class': 'form-control shadow-none', 'type': 'text', 'placeholder': 'Ksh 120000'}),
-        label='Price')
+    # price = forms.CharField(
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control shadow-none', 'type': 'text', 'placeholder': 'Ksh 120000'}),
+    #     label='Price')
 
     container_id = forms.CharField(
         widget=forms.TextInput(
@@ -61,6 +61,13 @@ class CreateContainerForm(forms.ModelForm):
         fields = ['date', 'company_name', 'container_id', 'size', 'price', 'side', 'status', 'comment']
 
         widgets = {
+            'size': forms.Select(attrs={'class': 'form-select shadow-none'}),
+            'side': forms.Select(attrs={'class': 'form-select shadow-none'}),
+            'status': forms.Select(attrs={'class': 'form-select shadow-none'}),
+
+        }
+
+        price = {
             'size': forms.Select(attrs={'class': 'form-select shadow-none'}),
             'side': forms.Select(attrs={'class': 'form-select shadow-none'}),
             'status': forms.Select(attrs={'class': 'form-select shadow-none'}),

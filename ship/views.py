@@ -148,3 +148,13 @@ def editcontainer(request, container_id):
         'containerform': containerform
     }
     return render(request, template_name='admin_/shipment/editcontainer.html', context=context)
+
+def containerdelete(request, pk):
+    container = container.objects.get(id=pk)
+    container.delete()
+    return redirect ('home')
+
+def deleteship(request, pk):
+    ship = Ship.objects.get(id=pk)
+    ship.delete()
+    return redirect ('home')
