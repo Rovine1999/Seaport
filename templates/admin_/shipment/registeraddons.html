@@ -11,7 +11,7 @@
               {% include './../components/errors.html' %}
           </div>
         <div class="form-holder">
-          <h1>Register Size</h1>
+          <h1>Register Boat</h1>
           <hr class="dropdown-divider">
           <form action="{% url 'saveSize' %}" method="POST">
             {% csrf_token %}
@@ -28,13 +28,13 @@
             {% endfor %}
 
 
-            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Size</button>
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Size</button>
 
           </form>
         </div>
 
         <div class="form-holder my-3">
-          <h1>Register Side</h1>
+          <!-- <h1>Side</h1> -->
           <hr class="dropdown-divider">
           <form action="{% url 'saveSide' %}" method="POST">
             {% csrf_token %}
@@ -51,14 +51,14 @@
             {% endfor %}
 
 
-            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Side</button>
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Side</button>
 
           </form>
         </div>
 
 
        <div class="form-holder my-3">
-          <h1>Register Status</h1>
+          <!-- <h1>Status</h1> -->
           <hr class="dropdown-divider">
           <form action="{% url 'saveStatus' %}" method="POST">
             {% csrf_token %}
@@ -75,7 +75,7 @@
             {% endfor %}
 
 
-            <button type="submit" class="btn btn-primary rounded-pill px-5">Register Status</button>
+            <button type="submit" class="btn btn-primary rounded-pill px-5">Status</button>
 
           </form>
         </div>
