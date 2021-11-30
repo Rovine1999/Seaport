@@ -13,6 +13,13 @@
             Register new ship
           </a>
         </div>
+
+        <div class="col-md-6 col-sm-12 my-2 ">
+          <a href="{% url 'addons' %}" class="rounded-pill btn btn-primary px-4 shadow-none">
+            Register new boat
+          </a>
+        </div>
+
       </div>
       <hr class="dropdown-divider">
 
@@ -37,6 +44,7 @@
               <td>{{ship.no_of_containers}}</td>
               <td>
                 <a href="{% url 'shipmentdetails' ship_id=ship.id ship_name=ship.name %}" class="my-2 rounded-pill px-3 py-1 btn btn-primary">View history</a>
+                <a href="#" class="my-2 rounded-pill px-3 py-1 btn btn-warning">Edit</a>
                 <a href="{% url 'deleteship' pk=ship.id%}" class="my-2 rounded-pill px-3 py-1 btn btn-danger">Delete</a>
               </td>
             </tr>

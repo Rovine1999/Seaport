@@ -29,6 +29,17 @@ class CreateShipForm(forms.ModelForm):
         #     'name': forms.CharField(attrs={'class': ''})
         # }
 
+class CreateBoatForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control shadow-none', 'placeholder': 'Ship Name'}),
+        label='Ship Name')
+
+    size = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control shadow-none', 'type': 'size'}),
+        label='Size')
+
 
 class CreateContainerForm(forms.ModelForm):
     date = forms.CharField(

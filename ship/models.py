@@ -63,3 +63,17 @@ class Container(models.Model):
     comment = models.CharField(max_length=200, default='',)
     date_created = models.DateTimeField(auto_now_add=True)
 
+class Boat(models.Model):
+    
+    PRICES = (
+        ('$ 112.5', '$ 112.5'),
+        ('$ 62', '$ 62'),
+        
+    )
+     
+    size = models.ForeignKey(ContainerSize, on_delete=models.SET_NULL, null=True, blank=True)
+    price = models.CharField(max_length=200, choices=PRICES, blank=True, null=True)
+    # status_color = models.CharField(max_length=10, choices=COLORS, blank=True, null=True)
+    side = models.ForeignKey(ContainerSide, on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.ForeignKey(ContainerStatus, on_delete=models.SET_NULL, null=True, blank=True)
+
