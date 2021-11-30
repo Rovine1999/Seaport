@@ -65,7 +65,7 @@
 
             {% for field in statusform %}
                 <div class="mb-3">
-                    <label for="{{ field.id_for_label }}" class="my-2"><strong>{{field.label}}</strong></label>
+                    <label for="{{ field.id_for_label }}" class="my-2"><strong>{{boat.company_name}}</strong></label>
                     <div class="text-danger">{{field.errors}}</div>
                     {{field}}
                     {% if field.help_text %}
