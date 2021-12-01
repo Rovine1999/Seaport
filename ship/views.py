@@ -66,11 +66,13 @@ def registernewaddons(request):
     sizeform = CreateSizeForm()
     sideform = CreateSideForm()
     statusform = CreateStatusForm()
+    boatform = CreateBoatForm()
     context = {
         'page': 'addons-reg',
         'sizeform': sizeform,
         'sideform': sideform,
-        'statusform': statusform
+        'statusform': statusform,
+        'boatform' : boatform
     }
     return render(request, template_name='admin_/shipment/registeraddons.html', context=context)
 
@@ -161,3 +163,19 @@ def deleteship(request, pk):
     ship = Ship.objects.get(id=pk)
     ship.delete()
     return redirect ('home')
+
+@login_required(login_url='login')
+def saveboat(request):
+    if request.method == 'POST':
+        boatform = CreateBoatForm(request.POST)
+        if boatform.is_valid():
+            boatform.save()
+            messages.success(request, 'Boat has been added successfully')
+            return redirect('addons')
+        else:
+            messages.error(request, 'Adding the boat failed')
+            return redirect('addons')
+
+    else:
+        messages.error(request, 'Unverified request method')
+        return redirect('addons')

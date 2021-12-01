@@ -15,8 +15,7 @@
         </div>
 
         <div class="col-md-6 col-sm-12 my-2 ">
-          <a href="{% url 'addons' %}" class="rounded-pill btn btn-primary px-4 shadow-none">
-            Register new boat
+          
           </a>
         </div>
 
@@ -54,6 +53,59 @@
         <div>
           {% if ships|length == 0 %}
             <div class="p-3 alert-info">No ship found</div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="common-card overflowx-hidden">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 my-2">
+          <h1>Boat History</h1>
+        </div>
+        <div class="col-md-6 col-sm-12 my-2">
+          <a href="{% url 'addons' %}" class="rounded-pill btn btn-primary px-4 shadow-none">
+            Register new boat
+          </a>
+        </div>
+
+        <div class="col-md-6 col-sm-12 my-2 ">
+          
+          </a>
+        </div>
+
+      </div>
+      <hr class="dropdown-divider">
+
+      <div class="w-100 table-responsive">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="width: 30px;">No.</th>
+              <th style="width: 150px;">Name</th>
+              <th style="width: 150px;">Company Name</th>
+              <th style="width: 100px;">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for boat in boats %}
+            <tr>
+              <td>{{boat.id}}</td>
+              <td>{{boat.company_name}}</td>
+              <td>{{boat.name}}</td>
+              <td>{{boat.date_time}}</td>
+            </tr>
+
+          {% endfor %}
+        </table>
+        <div>
+          {% if ships|length == 0 %}
+            <div class="p-3 alert-info">No boat found</div>
           {% endif %}
         </div>
       </div>
