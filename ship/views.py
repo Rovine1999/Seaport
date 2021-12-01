@@ -134,14 +134,6 @@ def editcontainer(request, container_id):
                'side': container.side, 'status': container.status, 'comment': container.comment}
     containerform = CreateContainerForm(initial=initial)
 
-    # if request.method == 'POST':
-    #     containerform = CreateContainerForm(request.POST)
-    #     if containerform.is_valid():
-    #         instance = containerform.save(commit=False)
-    #
-    #     else:
-    #         messages.error(request, 'Adding the container failed')
-    #         return redirect('shipmentdetails', ship_id=ship_id, ship_name=ship_name)
 
     context = {
         'page': 'cont-reg',
@@ -153,6 +145,17 @@ def containerdelete(request, pk):
     container = container.objects.get(id=pk)
     container.delete()
     return redirect ('home')
+
+def editship(request, ship_id):
+    ship = Ship.objects.get(id=pk)
+    ship.delete()
+    initial = {'ship_name': ship.name, 'date': ship.date, 'no_of_containers': ship.no_of_containers, 'date_created':ship.date_created}
+    shipform = CreateShipForm(initial=initial)
+    context = {
+        'page': 'cont-reg',
+        'shipform': shipform
+    }
+    return render(request, template_name='admin_/shipment/editship.html')
 
 def deleteship(request, pk):
     ship = Ship.objects.get(id=pk)

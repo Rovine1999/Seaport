@@ -10,5 +10,6 @@ urlpatterns = [
     path('save/status', saveStatus, name='saveStatus'),
     path('shipment/details/<str:ship_id>/<str:ship_name>/', shipdetails, name="shipmentdetails"),
     path('container/delete/<str:pk>/', containerdelete, name="containerdelete"),
-    path('ship/delete/<str:pk>/', deleteship, name="deleteship")
+    path('ship/delete/<str:pk>/', deleteship, name="deleteship"),
+    path('ship/edit/<str:pk>/', editship, name='editship')
 ]
