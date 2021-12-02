@@ -36,6 +36,28 @@ def registernewship(request):
     }
     return render(request, template_name='admin_/shipment/registernewship.html', context=context)
 
+def editship(request, pk):
+    ship = get_object_or_404(Ship, id=pk)
+
+    shipform = CreateShipForm(request.POST or None, request.FILES or None, instance=ship)
+    
+    if request.method == 'POST':
+        if shipform.is_valid:
+            shipform.save()
+            messages.success(request, 'The ship has been updated successfully')
+        else:
+            messages.error(request, 'Updating the ship failed')
+    
+    context = {
+        'page': 'cont-reg',
+        'shipform': shipform
+    }
+    return render(request, template_name='admin_/shipment/editship.html', context=context)
+
+def deleteship(request, pk):
+    ship = Ship.objects.get(id=pk)
+    ship.delete()
+    return redirect ('home')
 
 @login_required(login_url='login')
 def registernewcontainer(request, ship_id, ship_name):
@@ -59,6 +81,34 @@ def registernewcontainer(request, ship_id, ship_name):
         'containerform': containerform
     }
     return render(request, template_name='admin_/shipment/registernewcontainer.html', context=context)
+
+@login_required(login_url='login')
+def editcontainer(request, container_id):
+
+    container = get_object_or_404(Container, id=container_id)
+
+    containerform = CreateContainerForm(request.POST or None, request.FILES or None, instance=container)
+    
+    if request.method == 'POST':
+        if containerform.is_valid:
+            containerform.instance.ship = container.ship
+            containerform.save()
+            messages.success(request, 'The Container has been updated successfully')
+            
+        else:
+            messages.error(request, 'Updating the container failed')
+
+    context = {
+        'page': 'cont-reg',
+        'containerform': containerform,
+       
+    }
+    return render(request, template_name='admin_/shipment/editcontainer.html', context=context)
+
+def containerdelete(request, pk):
+    container = container.objects.get(id=pk)
+    container.delete()
+    return redirect ('home')
 
 
 @login_required(login_url='login')
@@ -126,43 +176,6 @@ def saveStatus(request):
     else:
         messages.error(request, 'Unverified request method')
         return redirect('addons')
-
-
-@login_required(login_url='login')
-def editcontainer(request, container_id):
-    container = Container.objects.get(id=1)
-    initial = {'company_name': container.company_name, 'date': container.date,
-               'container_id': container.container_id, 'size': container.size,
-               'side': container.side, 'status': container.status, 'comment': container.comment}
-    containerform = CreateContainerForm(initial=initial)
-
-
-    context = {
-        'page': 'cont-reg',
-        'containerform': containerform
-    }
-    return render(request, template_name='admin_/shipment/editcontainer.html', context=context)
-
-def containerdelete(request, pk):
-    container = container.objects.get(id=pk)
-    container.delete()
-    return redirect ('home')
-
-def editship(request, ship_id):
-    ship = Ship.objects.get(id=pk)
-    ship.delete()
-    initial = {'ship_name': ship.name, 'date': ship.date, 'no_of_containers': ship.no_of_containers, 'date_created':ship.date_created}
-    shipform = CreateShipForm(initial=initial)
-    context = {
-        'page': 'cont-reg',
-        'shipform': shipform
-    }
-    return render(request, template_name='admin_/shipment/editship.html')
-
-def deleteship(request, pk):
-    ship = Ship.objects.get(id=pk)
-    ship.delete()
-    return redirect ('home')
 
 @login_required(login_url='login')
 def saveboat(request):
