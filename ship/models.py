@@ -51,8 +51,7 @@ class Ship(models.Model):
 class Container(models.Model):
     PRICES = (
         ('$ 112.5', '$ 112.5'),
-        ('$ 62', '$ 62'),
-        
+        ('$ 62', '$ 62')
     )
     # created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     ship = models.ForeignKey(Ship, on_delete=models.SET_NULL, null=True, blank=True)
@@ -67,8 +66,16 @@ class Container(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
 class Boat(models.Model):
+    CHOICES = (
+        ('pending', 'pending'),
+        ('paid', 'paid')
+    )
     name = models.TextField(blank=True, null=True, max_length=200)
     company_name = models.CharField(max_length=200, blank=True, null=True)
     tone = models.IntegerField(blank=True, null=True)
     date_time= models.DateTimeField(default=datetime.now)
+    status = models.CharField(max_length=10, choices=CHOICES, blank=True, null=True)
+
+    # def __str__(self):
+    #     return self.status
 
