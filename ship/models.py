@@ -70,6 +70,5 @@ class Boat(models.Model):
     name = models.TextField(blank=True, null=True, max_length=200)
     company_name = models.CharField(max_length=200, blank=True, null=True)
     tone = models.IntegerField(blank=True, null=True)
-    # status = models.ForeignKey(ContainerStatus, on_delete=models.SET_NULL, null=True, blank=True)
     date_time= models.DateTimeField(default=datetime.now)
 
