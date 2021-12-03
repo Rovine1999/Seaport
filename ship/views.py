@@ -2,8 +2,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
-# Create your views here.
-
 
 @login_required(login_url='login')
 def shipdetails(request, ship_id, ship_name):
@@ -106,7 +104,7 @@ def editcontainer(request, container_id):
     return render(request, template_name='admin_/shipment/editcontainer.html', context=context)
 
 def containerdelete(request, pk):
-    container = container.objects.get(id=pk)
+    container = Container.objects.get(id=pk)
     container.delete()
     return redirect ('home')
 
@@ -148,69 +146,3 @@ def deleteboat(request, pk):
     boat = Boat.objects.get(id=pk)
     boat.delete()
     return redirect ('home')
-
-@login_required(login_url='login')
-def saveSize(request):
-    if request.method == 'POST':
-        sizeform = CreateSizeForm(request.POST)
-        if sizeform.is_valid():
-            sizeform.save()
-            messages.success(request, 'Size has been added successfully')
-            return redirect('addons')
-        else:
-            messages.error(request, 'Adding the size failed')
-            return redirect('addons')
-
-    else:
-        messages.error(request, 'Unverified request method')
-        return redirect('addons')
-
-
-@login_required(login_url='login')
-def saveSide(request):
-    if request.method == 'POST':
-        sideform = CreateSideForm(request.POST)
-        if sideform.is_valid():
-            sideform.save()
-            messages.success(request, 'Side has been added successfully')
-            return redirect('addons')
-        else:
-            messages.error(request, 'Adding the side failed')
-            return redirect('addons')
-
-    else:
-        messages.error(request, 'Unverified request method')
-        return redirect('addons')
-
-
-@login_required(login_url='login')
-def saveStatus(request):
-    if request.method == 'POST':
-        statusform = CreateStatusForm(request.POST)
-        if statusform.is_valid():
-            statusform.save()
-            messages.success(request, 'Status has been added successfully')
-            return redirect('addons')
-        else:
-            messages.error(request, 'Adding the status failed')
-            return redirect('addons')
-
-    else:
-        messages.error(request, 'Unverified request method')
-        return redirect('addons')
-
-@login_required(login_url='login')
-def saveboat(request):
-    if request.method == 'POST':
-        boatform = CreateBoatForm(request.POST)
-        if boatform.is_valid():
-            boatform.save()
-            messages.success(request, 'Boat has been added successfully')
-            return redirect('addons')
-        else:
-            messages.error(request, 'Adding the boat failed')
-            return redirect('addons')
-
-    else:
-        messages.error(request, 'Unverified request method')
-        return redirect('addons')

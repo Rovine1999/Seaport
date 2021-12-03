@@ -90,6 +90,7 @@
               <th style="width: 150px;">Name</th>
               <th style="width: 150px;">Company Name</th>
               <th style="width: 150px;">Tones</th>
+              <th style="width: 150px;">Status</th>
               <th style="width: 100px;">Date</th>
               <th style="width: 200px;">Actions</th>
             </tr>
@@ -101,6 +102,7 @@
               <td>{{boat.company_name}}</td>
               <td>{{boat.name}}</td>
               <td>{{boat.tone}}</td>
+              <td>{{boat.status}}</td>
               <td>{{boat.date_time}}</td>
               <td>
                 <a href="{% url 'editboat' pk=boat.id %}" class="my-2 rounded-pill px-3 py-1 btn btn-warning">Edit</a>

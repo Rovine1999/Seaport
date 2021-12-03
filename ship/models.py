@@ -4,78 +4,63 @@ from django.utils.timezone import now
 from datetime import datetime
 
 
-# Create your models here.
-
-
-class ContainerSize(models.Model):
-    size = models.CharField(max_length=10, blank=True, null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.size
-
-
-class ContainerSide(models.Model):
-    side = models.CharField(max_length=10, blank=True, null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.side
-
-
-class ContainerStatus(models.Model):
-    COLORS = (
-        ('warning', 'warning'),
-        ('danger', 'danger'),
-        ('success', 'success'),
-        ('primary', 'primary'),
-        ('secondary', 'secondary'),
-        ('info', 'info')
-    )
-    status = models.CharField(max_length=10, blank=True, null=True)
-    status_color = models.CharField(max_length=10, choices=COLORS, blank=True, null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.status
-
-
 class Ship(models.Model):
-    # created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     name = models.TextField(blank=True, null=True, max_length=200)
     date = models.DateField()
     no_of_containers = models.CharField(max_length=10, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
 
 class Container(models.Model):
     PRICES = (
         ('$ 112.5', '$ 112.5'),
         ('$ 62', '$ 62')
     )
-    # created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+
+    SIDES = (
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C')
+    )
+
+    STATUS = (
+        ('pending', 'Pending'),
+        ('paid', 'Paid'),
+        ('free', 'Free')
+    )
+
+    SIZES = (
+        ('40ft', '40ft'),
+        ('20ft', '20ft'),
+    )
+    
     ship = models.ForeignKey(Ship, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
     company_name = models.CharField(max_length=200, blank=True, null=True)
     container_id = models.CharField(max_length=200, blank=True, null=True)
-    size = models.ForeignKey(ContainerSize, on_delete=models.SET_NULL, null=True, blank=True)
-    price = models.CharField(max_length=200, choices=PRICES, blank=True, null=True)
-    side = models.ForeignKey(ContainerSide, on_delete=models.SET_NULL, null=True, blank=True)
-    status = models.ForeignKey(ContainerStatus, on_delete=models.SET_NULL, null=True, blank=True)
+    size = models.CharField(max_length=200, choices=SIZES, default='40ft')
+    price = models.CharField(max_length=200, choices=PRICES, default='$ 112.5')
+    side = models.CharField(max_length=200, choices=SIDES, default='A')
+    status = models.CharField(max_length=200, choices=STATUS, default='Pending')
     comment = models.CharField(max_length=200, default='',)
     date_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.company_name
+
 class Boat(models.Model):
     CHOICES = (
-        ('pending', 'pending'),
-        ('paid', 'paid')
+        ('pending', 'Pending'),
+        ('paid', 'Paid')
     )
     name = models.TextField(blank=True, null=True, max_length=200)
     company_name = models.CharField(max_length=200, blank=True, null=True)
     tone = models.IntegerField(blank=True, null=True)
-    date_time= models.DateTimeField(default=datetime.now)
-    status = models.CharField(max_length=10, choices=CHOICES, blank=True, null=True)
+    date_time= models.DateTimeField()
+    status = models.CharField(max_length=10, choices=CHOICES, default='Pending')
 
-    # def __str__(self):
-    #     return self.status
+    def __str__(self):
+        return self.name
 
