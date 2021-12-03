@@ -61,6 +61,8 @@ class CreateBoatForm(forms.ModelForm):
         fields = ['name', 'company_name', 'tone', 'date_time', 'status']
 
 
+
+
 class CreateContainerForm(forms.ModelForm):
     date = forms.CharField(
         widget=forms.TextInput(
