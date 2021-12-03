@@ -51,9 +51,14 @@ class CreateBoatForm(forms.ModelForm):
             attrs={'class': 'form-control shadow-none', 'type': 'datetime-local', 'placeholder': 'Date of Arrival'}),
         label='Date of Arrival')
 
+    status = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control shadow-none', 'type': 'text'}),
+        label='Status')
+
     class Meta:
         model = Boat
-        fields = ['name', 'company_name', 'tone', 'date_time']
+        fields = ['name', 'company_name', 'tone', 'date_time', 'status']
 
 
 class CreateContainerForm(forms.ModelForm):
