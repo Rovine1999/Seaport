@@ -15,8 +15,8 @@ class Ship(models.Model):
 
 class Container(models.Model):
     PRICES = (
-        ('$ 112.5', '$ 112.5'),
-        ('$ 62', '$ 62')
+        ('112.5', '112.5'),
+        ('62', '62')
     )
 
     SIDES = (
@@ -26,9 +26,9 @@ class Container(models.Model):
     )
 
     STATUS = (
-        ('pending', 'Pending'),
-        ('paid', 'Paid'),
-        ('free', 'Free')
+        ('Pending', 'Pending'),
+        ('Paid', 'Paid'),
+        ('Free', 'Free')
     )
 
     SIZES = (
@@ -41,7 +41,7 @@ class Container(models.Model):
     company_name = models.CharField(max_length=200, blank=True, null=True)
     container_id = models.CharField(max_length=200, blank=True, null=True)
     size = models.CharField(max_length=200, choices=SIZES, default='40ft')
-    price = models.CharField(max_length=200, choices=PRICES, default='$ 112.5')
+    price = models.CharField(max_length=200, choices=PRICES, default='112.5')
     side = models.CharField(max_length=200, choices=SIDES, default='A')
     status = models.CharField(max_length=200, choices=STATUS, default='Pending')
     comment = models.CharField(max_length=200, default='',)
@@ -52,8 +52,8 @@ class Container(models.Model):
 
 class Boat(models.Model):
     CHOICES = (
-        ('pending', 'Pending'),
-        ('paid', 'Paid')
+        ('Pending', 'Pending'),
+        ('Paid', 'Paid')
     )
     name = models.TextField(blank=True, null=True, max_length=200)
     company_name = models.CharField(max_length=200, blank=True, null=True)

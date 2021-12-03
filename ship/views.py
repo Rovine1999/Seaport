@@ -110,19 +110,23 @@ def containerdelete(request, pk):
 
 
 @login_required(login_url='login')
-def registernewaddons(request):
-    sizeform = CreateSizeForm()
-    sideform = CreateSideForm()
-    statusform = CreateStatusForm()
+def registernewboat(request):
     boatform = CreateBoatForm()
+
+    if request.method == 'POST':
+        boatform = CreateBoatForm(request.POST)
+        if boatform.is_valid():
+            boatform.save()
+            messages.success(request, 'Boat has been added successfully')
+            return redirect('registerboat')
+        else:
+            messages.error(request, 'Adding boat failed')
+            return redirect('registerboat')
     context = {
-        'page': 'addons-reg',
-        'sizeform': sizeform,
-        'sideform': sideform,
-        'statusform': statusform,
+        'page' : 'newboat',
         'boatform' : boatform
     }
-    return render(request, template_name='admin_/shipment/registeraddons.html', context=context)
+    return render(request, template_name='admin_/shipment/registerboat.html', context=context)
 
 def editboat(request, pk):
     boat = get_object_or_404(Boat, id=pk)
