@@ -126,6 +126,28 @@ def registernewaddons(request):
     }
     return render(request, template_name='admin_/shipment/registeraddons.html', context=context)
 
+def editboat(request, pk):
+    boat = get_object_or_404(Boat, id=pk)
+
+    boatform = CreateBoatForm(request.POST or None, request.FILES or None, instance=boat)
+    
+    if request.method == 'POST':
+        if boatform.is_valid:
+            boatform.save()
+            messages.success(request, 'The boat has been updated successfully')
+        else:
+            messages.error(request, 'Updating the boat failed')
+    
+    context = {
+        'page': 'boat-reg',
+        'boatform': boatform
+    }
+    return render(request, template_name='admin_/shipment/editboat.html', context=context)
+
+def deleteboat(request, pk):
+    boat = Boat.objects.get(id=pk)
+    boat.delete()
+    return redirect ('home')
 
 @login_required(login_url='login')
 def saveSize(request):

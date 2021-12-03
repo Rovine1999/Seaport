@@ -12,5 +12,7 @@ urlpatterns = [
     path('container/delete/<str:pk>/', containerdelete, name="containerdelete"),
     path('ship/delete/<str:pk>/', deleteship, name="deleteship"),
     path('save/boat/', saveboat, name='saveboat'),
-    path('ship/edit/<str:pk>/', editship, name='editship')
+    path('ship/edit/<str:pk>/', editship, name='editship'),
+    path('boat/edit/<str:pk>/', editboat, name='editboat'),
+    path('boat/delete/<str:pk>/', deleteboat, name="deleteboat"),
 ]
