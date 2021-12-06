@@ -57,7 +57,7 @@
 
               {% for container in containers %}
                 <tr>
-                  <td>{{container.id}}</td>
+                  <td>{{forloop.counter}}</td>
                   <td>{{container.date}}</td>
                   <td>{{container.company_name}}</td>
                   <td>{{container.container_id}}</td>

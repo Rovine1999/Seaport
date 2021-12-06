@@ -37,7 +37,7 @@
           <tbody>
           {% for ship in ships %}
             <tr>
-              <td>{{ship.id}}</td>
+              <td>{{forloop.counter}}</td>
               <td>{{ship.name}}</td>
               <td>{{ship.date}}</td>
               <td>{{ship.no_of_containers}}</td>
@@ -98,7 +98,7 @@
           <tbody>
           {% for boat in boats %}
             <tr>
-              <td>{{boat.id}}</td>
+              <td>{{forloop.counter}}</td>
               <td>{{boat.company_name}}</td>
               <td>{{boat.name}}</td>
               <td>{{boat.tone}}</td>

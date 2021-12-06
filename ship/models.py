@@ -44,7 +44,7 @@ class Container(models.Model):
     price = models.CharField(max_length=200, choices=PRICES, default='112.5')
     side = models.CharField(max_length=200, choices=SIDES, default='A')
     status = models.CharField(max_length=200, choices=STATUS, default='Pending')
-    comment = models.CharField(max_length=200, default='',)
+    comment = models.CharField(max_length=200, default='', blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
