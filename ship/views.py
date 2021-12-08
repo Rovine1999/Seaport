@@ -34,7 +34,7 @@ def registernewship(request):
     shipform = CreateShipForm()
 
     if request.method == 'POST':
-        shipform = CreateShipForm(request.POST)
+        shipform = CreateShipForm(request.POST, request.FILES)
         if shipform.is_valid():
             shipform.save()
             messages.success(request, 'Ship has been added successfully')
@@ -131,7 +131,7 @@ def registernewboat(request):
     boatform = CreateBoatForm()
 
     if request.method == 'POST':
-        boatform = CreateBoatForm(request.POST)
+        boatform = CreateBoatForm(request.POST, request.FILES)
         if boatform.is_valid():
             boatform.save()
             messages.success(request, 'Boat has been added successfully')
