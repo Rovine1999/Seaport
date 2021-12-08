@@ -35,7 +35,7 @@ class Container(models.Model):
         ('40ft', '40ft'),
         ('20ft', '20ft'),
     )
-    
+    docs = models.FileField(upload_to='documents/', blank=True, null=True)
     ship = models.ForeignKey(Ship, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
     company_name = models.CharField(max_length=200, blank=True, null=True)

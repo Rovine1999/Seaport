@@ -1,5 +1,8 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from .views import *
+
 urlpatterns = [
     path('register/new-ship/', registernewship, name='registership'),
     path('register/new-container/<str:ship_id>/<str:ship_name>/', registernewcontainer, name='registercontainer'),
@@ -12,3 +15,5 @@ urlpatterns = [
     path('boat/edit/<str:pk>/', editboat, name='editboat'),
     path('boat/delete/<str:pk>/', deleteboat, name="deleteboat"),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
