@@ -82,17 +82,7 @@ class CreateContainerForm(forms.ModelForm):
         model = Container
         fields = ['date', 'company_name', 'container_id', 'size', 'price', 'side', 'status', 'comment']
 
-        widgets = {
-            'size': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'side': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'status': forms.Select(attrs={'class': 'form-select shadow-none'}),
+        
 
-        }
-
-        price = {
-            'size': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'side': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'status': forms.Select(attrs={'class': 'form-select shadow-none'}),
-
-        }
+        
 

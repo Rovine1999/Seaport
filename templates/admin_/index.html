@@ -20,6 +20,8 @@
         </div>
 
       </div>
+      {% if ships %}
+    
       <hr class="dropdown-divider">
 
       <div class="w-100 table-responsive">
@@ -51,12 +53,9 @@
           {% endfor %}
         </table>
         <div>
-          {% if ships|length == 0 %}
-            <div class="p-3 alert-info">No ship found</div>
-          {% endif %}
         </div>
       </div>
-
+    {% endif %}
     </div>
   </div>
 
@@ -79,6 +78,7 @@
         </div>
 
       </div>
+      {% if boats %}
       <hr class="dropdown-divider">
 
       <div class="w-100 table-responsive">
@@ -96,7 +96,9 @@
             </tr>
           </thead>
           <tbody>
+           
           {% for boat in boats %}
+          
             <tr>
               <td>{{forloop.counter}}</td>
               <td>{{boat.company_name}}</td>
@@ -109,16 +111,15 @@
                 <a href="{% url 'deleteboat' pk=boat.id%}" class="my-2 rounded-pill px-3 py-1 btn btn-danger">Delete</a>
               </td>
             </tr>
+            
 
           {% endfor %}
+         
         </table>
         <div>
-          {% if ships|length == 0 %}
-            <div class="p-3 alert-info">No boat found</div>
-          {% endif %}
         </div>
       </div>
-
+          {% endif %}
     </div>
   </div>
 
