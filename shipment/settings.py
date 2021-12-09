@@ -112,7 +112,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES = '/staticfiles/'
-MEDIA = '/media/'
 STATICFILES_DIRS = (os.path.join('static'), )
 
 # Default primary key field type
