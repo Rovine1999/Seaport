@@ -9,9 +9,9 @@ def shipdetails(request, ship_id, ship_name):
     ships = Ship.objects.all()
     containers = Container.objects.filter(ship=ship)
 
-    pending = Container.objects.filter(status='Pending')
-    paid = Container.objects.filter(status='Paid')
-    free = Container.objects.filter(status='Free')
+    pending = containers.filter(status='Pending')
+    paid = containers.filter(status='Paid')
+    free = containers.filter(status='Free')
 
     total = sum([float(i.price) for i in containers])
     pendingTotal = sum([float(i.price) for i in pending])
@@ -81,7 +81,6 @@ def registernewcontainer(request, ship_id, ship_name):
         containerform = CreateContainerForm(request.POST)
         if containerform.is_valid():
             instance = containerform.save(commit=False)
-            print('isnsnsiiiiiiiiiiiiiiiiiiii')
             print(instance)
             instance.ship = ship
             instance.save()
