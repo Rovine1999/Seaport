@@ -24,7 +24,7 @@ class CreateShipForm(forms.ModelForm):
 
     class Meta:
         model = Ship
-        fields = ['name', 'date', 'no_of_containers']
+        fields = ['name', 'date', 'no_of_containers', 'ship_docs']
 
 class CreateBoatForm(forms.ModelForm):
 
@@ -52,7 +52,7 @@ class CreateBoatForm(forms.ModelForm):
 
     class Meta:
         model = Boat
-        fields = ['name', 'company_name', 'tone', 'date_time', 'status']
+        fields = ['name', 'company_name', 'tone', 'date_time', 'status', 'boat_docs']
 
         widgets = {
             'status': forms.Select(attrs={'class': 'form-select shadow-none'}),
@@ -85,17 +85,7 @@ class CreateContainerForm(forms.ModelForm):
         model = Container
         fields = ['date', 'company_name', 'container_id', 'size', 'price', 'side', 'status', 'comment']
 
-        widgets = {
-            'size': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'side': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'status': forms.Select(attrs={'class': 'form-select shadow-none'}),
+        
 
-        }
-
-        price = {
-            'size': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'side': forms.Select(attrs={'class': 'form-select shadow-none'}),
-            'status': forms.Select(attrs={'class': 'form-select shadow-none'}),
-
-        }
+        
 

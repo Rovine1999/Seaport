@@ -6,10 +6,25 @@ from .forms import *
 @login_required(login_url='login')
 def shipdetails(request, ship_id, ship_name):
     ship = Ship.objects.get(id=ship_id)
+    ships = Ship.objects.all()
+    containers = Container.objects.filter(ship=ship)
+
+    pending = containers.filter(status='Pending')
+    paid = containers.filter(status='Paid')
+    free = containers.filter(status='Free')
+
+    total = sum([float(i.price) for i in containers])
+    pendingTotal = sum([float(i.price) for i in pending])
+    paidTotal = sum([float(i.price) for i in paid])
+    freeTotal = sum([float(i.price) for i in free])
     context = {
         'ship': ship,
-        'ships': Ship.objects.all(),
-        'containers': Container.objects.filter(ship=ship)
+        'ships': ships,
+        'containers': containers,
+        'pending_total' : pendingTotal,
+        'paid_total' : paidTotal,
+        'free_total' : freeTotal,
+        'total': total
     }
     return render(request, template_name='admin_/shipment/shipdetail.html', context=context)
 
@@ -19,7 +34,7 @@ def registernewship(request):
     shipform = CreateShipForm()
 
     if request.method == 'POST':
-        shipform = CreateShipForm(request.POST)
+        shipform = CreateShipForm(request.POST, request.FILES)
         if shipform.is_valid():
             shipform.save()
             messages.success(request, 'Ship has been added successfully')
@@ -66,6 +81,7 @@ def registernewcontainer(request, ship_id, ship_name):
         containerform = CreateContainerForm(request.POST)
         if containerform.is_valid():
             instance = containerform.save(commit=False)
+            print(instance)
             instance.ship = ship
             instance.save()
             messages.success(request, 'The Container has been added successfully')
@@ -114,7 +130,7 @@ def registernewboat(request):
     boatform = CreateBoatForm()
 
     if request.method == 'POST':
-        boatform = CreateBoatForm(request.POST)
+        boatform = CreateBoatForm(request.POST, request.FILES)
         if boatform.is_valid():
             boatform.save()
             messages.success(request, 'Boat has been added successfully')

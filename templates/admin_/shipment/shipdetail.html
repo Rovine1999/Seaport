@@ -34,6 +34,7 @@
               </a>
             </div>
           </div>
+          {% if containers %}
           <hr class="dropdown-divider">
 
           <div class="w-100 table-responsive">
@@ -56,8 +57,9 @@
               <tbody>
 
               {% for container in containers %}
+              
                 <tr>
-                  <td>{{container.id}}</td>
+                  <td>{{forloop.counter}}</td>
                   <td>{{container.date}}</td>
                   <td>{{container.company_name}}</td>
                   <td>{{container.container_id}}</td>
@@ -79,19 +81,50 @@
                     </a>
                   </td>
                 </tr>
-
+                
               {% endfor %}
+              
+              
+              <tr>
+                <td colspan="4"style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;"><button class="btn btn-success">Total Paid</button></td>
+                
+                <td colspan="5" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">$ {{ paid_total|floatformat:2}}</td>
+                
+    
+              </tr>
+              <tr>
+                
+                <td colspan="4"style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;"><button class="btn btn-warning">Total Pending</button> </td>
+                
+                <td colspan="5" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">$ {{ pending_total|floatformat:2}}</td>
 
+                
+    
+              </tr>
+              <tr>
+                
+                <td colspan="4"style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;"><button class="btn btn-primary">Total Free</button></td>
+                
+                <td colspan="5" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;">$ {{ free_total|floatformat:2}}</td>
+    
+              </tr>
+              <tr>
+                <td colspan="4"style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;"><button class="btn btn-danger">Total Amount</button></td>
+                
+                <td colspan="5" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;"> $ {{ total|floatformat:2}}</td>
+    
+              </tr>
               </tbody>
             </table>
 
-            {% if containers|length == 0 %}
-            <div class="p-3 alert-info">No containers found</div>
-            {% endif %}
+            
           </div>
 
         </div>
       </div>
+      {% else %}
+        <div class="p-3 alert-info">No current containers</div>
+      {% endif %}
     </div>
   </div>
 

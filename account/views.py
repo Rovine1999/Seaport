@@ -70,7 +70,7 @@ def login_(request):
             return redirect('home')
         else:
             messages.error(request, 'Login failed! Check your username and password.')
-            return render(request, template_name='admin/account/login.html', context={'page': 'login'})
+            return redirect('login')
     return render(request, template_name='admin_/account/login.html', context={'page': 'login'})
 
 

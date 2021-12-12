@@ -9,6 +9,7 @@ class Ship(models.Model):
     date = models.DateField()
     no_of_containers = models.CharField(max_length=10, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    ship_docs = models.FileField(upload_to='ShipDocuments/', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -35,7 +36,6 @@ class Container(models.Model):
         ('40ft', '40ft'),
         ('20ft', '20ft'),
     )
-    
     ship = models.ForeignKey(Ship, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField()
     company_name = models.CharField(max_length=200, blank=True, null=True)
@@ -44,7 +44,7 @@ class Container(models.Model):
     price = models.CharField(max_length=200, choices=PRICES, default='112.5')
     side = models.CharField(max_length=200, choices=SIDES, default='A')
     status = models.CharField(max_length=200, choices=STATUS, default='Pending')
-    comment = models.CharField(max_length=200, default='',)
+    comment = models.CharField(max_length=200, default='', blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -60,6 +60,7 @@ class Boat(models.Model):
     tone = models.IntegerField(blank=True, null=True)
     date_time= models.DateTimeField()
     status = models.CharField(max_length=10, choices=CHOICES, default='Pending')
+    boat_docs = models.FileField(upload_to='BoatDocuments/', blank=True, null=True)
 
     def __str__(self):
         return self.name
