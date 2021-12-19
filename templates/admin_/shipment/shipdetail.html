@@ -35,28 +35,9 @@
             </div>
             {% if ship.ship_docs%}
             <div class="col-md-3 col-sm-12 my-2">
-              <button type="button" class="rounded-pill btn btn-outline-primary px-4 shadow-none" data-bs-toggle="modal" data-bs-target="#upload">
-                View ship Doc
-              </button>
+              <a href="{{ship.ship_docs.url}}"  class="rounded-pill btn btn-outline-primary px-4 shadow-none">Download Document</a>
             </div>
 
-                <!-- Modal -->
-<div class="modal fade" id="upload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ship Document</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img src="{{ship.ship_docs.url}}" class="img-responsive w-100 btn btn-outline-info" alt="{{ship.name}}">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
             {% endif %} 
           </div>
           {% if containers %}

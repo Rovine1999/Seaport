@@ -22,6 +22,8 @@ class CreateShipForm(forms.ModelForm):
             attrs={'class': 'form-control shadow-none', 'placeholder': 'No of Containers'}),
         label='Number of Containers')
 
+    ship_docs = forms.FileField(widget=forms.FileInput(attrs={'accept':'application/pdf'}))
+
     class Meta:
         model = Ship
         fields = ['name', 'date', 'no_of_containers', 'ship_docs']
@@ -48,7 +50,7 @@ class CreateBoatForm(forms.ModelForm):
             attrs={'class': 'form-control shadow-none', 'type': 'datetime-local', 'placeholder': 'Date of Arrival'}),
         label='Date of Arrival')
 
-    
+    boat_docs = forms.FileField(widget=forms.FileInput(attrs={'accept':'application/pdf'}))
 
     class Meta:
         model = Boat

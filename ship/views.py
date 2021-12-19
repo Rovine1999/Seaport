@@ -81,7 +81,6 @@ def registernewcontainer(request, ship_id, ship_name):
         containerform = CreateContainerForm(request.POST)
         if containerform.is_valid():
             instance = containerform.save(commit=False)
-            print(instance)
             instance.ship = ship
             instance.save()
             messages.success(request, 'The Container has been added successfully')
