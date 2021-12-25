@@ -1,5 +1,9 @@
 import os
 from pathlib import Path
+from decouple import config, Csv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,6 +13,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY = 'django-insecure-1k@cxj-&7y_$nd48ej9kfmw--^p0_=9ux^&y_4d!v3(r%+0&$e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -30,6 +35,8 @@ INSTALLED_APPS = [
     'home',
     'account',
     'ship',
+    'cloudinary_storage',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +128,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# CLOUDINARY_STORAGE = { 
+#   'CLOUD_NAME' : '', 
+#   'API_KEY' : '', 
+#   'API_SECRET' : '' 
+# }
