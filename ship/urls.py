@@ -9,6 +9,7 @@ urlpatterns = [
     path('container/edit/<str:container_id>/', editcontainer, name='editcontainer'),
     path('register/new-boat/', registernewboat, name='registerboat'),
     path('shipment/details/<str:ship_id>/<str:ship_name>/', shipdetails, name="shipmentdetails"),
+    path('boat/details/<str:boat_id>/<str:boat_company_name>/', boatdetails, name="boatdetails"),
     path('container/delete/<str:pk>/', containerdelete, name="containerdelete"),
     path('ship/delete/<str:pk>/', deleteship, name="deleteship"),
     path('ship/edit/<str:pk>/', editship, name='editship'),

@@ -81,7 +81,6 @@ def registernewcontainer(request, ship_id, ship_name):
         containerform = CreateContainerForm(request.POST)
         if containerform.is_valid():
             instance = containerform.save(commit=False)
-            print(instance)
             instance.ship = ship
             instance.save()
             messages.success(request, 'The Container has been added successfully')
@@ -166,3 +165,14 @@ def deleteboat(request, pk):
     boat = Boat.objects.get(id=pk)
     boat.delete()
     return redirect ('home')
+
+@login_required(login_url='login')
+def boatdetails(request, boat_id, boat_company_name):
+    boat = Boat.objects.get(id=boat_id)
+    boats = Boat.objects.all()
+    
+    context = {
+        'boat': boat,
+        'boats': boats,
+    }
+    return render(request, template_name='admin_/shipment/boatdetails.html', context=context)

@@ -107,6 +107,7 @@
               <td>{{boat.status}}</td>
               <td>{{boat.date_time}}</td>
               <td>
+                <a href="{% url 'boatdetails' boat_id=boat.id boat_company_name=boat.company_name %}" class="my-2 rounded-pill px-3 py-1 btn btn-primary">View More</a>
                 <a href="{% url 'editboat' pk=boat.id %}" class="my-2 rounded-pill px-3 py-1 btn btn-warning">Edit</a>
                 <a href="{% url 'deleteboat' pk=boat.id%}" class="my-2 rounded-pill px-3 py-1 btn btn-danger">Delete</a>
               </td>

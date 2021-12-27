@@ -1,0 +1,46 @@
+{% extends './../components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container-fluid">
+    <div class="row py-3">
+      <div class="col-md-2 d-none d-md-block position-relative">
+        <div class="ship-holder sticky-top common-card px-1 py-3">
+          <a href="{% url 'registerboat' %}" class="btn btn-primary rounded-pill w-100">Register boat</a>
+          {% for boat_ in boats %}
+            <a href="{% url 'boatdetails' boat_id=boat_.id boat_company_name=boat_.company_name %}" class="my-2 d-block t-none">
+              <div class="p-2 common-card-1 text-capitalize {% if boat_.company_name == boat.company_name %} active-ship {% else %} boat {% endif %}">
+                <strong>{{boat_.company_name}}</strong>
+              </div>
+            </a>
+          {% endfor %}
+
+          {% if boats|length == 0 %}
+            <div class="p-3 alert-info">No boat found</div>
+          {% endif %}
+
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="common-card overflowx-hidden">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 my-2">
+              <h1 class="text-capitalize">{{boat.company_name}}</h1>
+            </div>
+            <div class="col-md-3 col-sm-12 my-2">
+            {% if boat.boat_docs%}
+            <div class="col-md-6 col-sm-12 my-2">
+              <a href="{{boat.boat_docs.url}}"  class="rounded-pill btn btn-outline-primary px-4 shadow-none">Download Document</a>
+            </div>
+            {% endif %} 
+          </div>
+          
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% endblock content %}
